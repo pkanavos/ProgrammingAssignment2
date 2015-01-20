@@ -1,14 +1,38 @@
 hilbert <- function(n) { i <- 1:n; 1 / outer(i - 1, i, "+") }
 
-test.examples <- function() {
-	unit8<- diag(8)		
-	
-	h8 <- hilbert(8); 
-	cacheMatrix<-makeCacheMatrix(h8)
-	cachedInverted<-cacheSolve(cacheMatrix)
+inputMatrix    <- hilbert(8); 
+identityMatrix <- diag(8)  	
 
-	multMatrix<-round(cachedInverted %*% h8,3)
+test.that_cacheSolve_returns_inverse <- function() {
 
-	checkEquals(unit8,multMatrix)
+  cacheMatrix<-makeCacheMatrix(inputMatrix)
+	result<-cacheSolve(cacheMatrix)
+  
+  ##Multiplying the inverted matrix with the original matrix
+  ##should result in the identity matrix
+  
+  multMatrix<-round(result %*% inputMatrix,3)
+	checkEquals(multMatrix,identityMatrix)
+}
+
+test.that_cacheSolve_returns_matrix <- function() {
+  
+  cacheMatrix<-makeCacheMatrix(inputMatrix)
+  result<-cacheSolve(cacheMatrix)
+  
+  ##The result is a matrix
+  checkTrue(is(result,"matrix"))  
+}
+
+
+test.that_second_call_returns_cached_value <- function() {
+
+  cacheMatrix<-makeCacheMatrix(inputMatrix)
+  
+  firstResult <-cacheSolve(cacheMatrix)
+  secondResult<-cacheSolve(cacheMatrix)
+  
+  checkIdentical(firstResult,secondResult)
+  
 }
 
