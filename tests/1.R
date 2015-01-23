@@ -36,3 +36,13 @@ test.that_second_call_returns_cached_value <- function() {
   
 }
 
+test.that_na_returns_na <- function() {
+  
+  cacheMatrix<-makeCacheMatrix(NA)
+  
+  firstResult <-cacheSolve(cacheMatrix)
+  secondResult<-cacheSolve(cacheMatrix)
+  
+  checkIdentical(firstResult,secondResult)
+  checkTrue(is.na(firstResult[[1]]))
+}
