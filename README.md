@@ -103,3 +103,11 @@ In order to complete this assignment, you must do the following:
 ### Grading
 
 This assignment will be graded via peer assessment.
+
+
+### Unit Tests
+
+This repository contains unit tests that use the RUnit package. To run them
+
+ # Install the 'RUnit' package with `install.packages('RUnit')` 
+ # Run the tests with `source("run_tests.R")`
