@@ -109,5 +109,5 @@ This assignment will be graded via peer assessment.
 
 This repository contains unit tests that use the RUnit package. To run them
 
- # Install the 'RUnit' package with `install.packages('RUnit')` 
- # Run the tests with `source("run_tests.R")`
+1. Install the 'RUnit' package with `install.packages('RUnit')` 
+2. Run the tests with `source("run_tests.R")`
